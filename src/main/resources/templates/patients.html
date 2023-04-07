@@ -11,7 +11,14 @@
     <div class="card">
         <div class="card-header">Liste des patients</div>
         <div class="card-body">
-            <table class="table">
+
+            <form method="get" th:action="@{index}">
+                <label>Key word</label>
+                <input type="text" name="keyword" th:value="${keyword}">
+                <button type="submit" class="btn btn-primary">Chercher</button>
+            </form>
+
+            <table class="table table-striped">
 
                 <thead>
                 <tr>
@@ -23,15 +30,30 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="p:${listPatients}">
-                    <td th:text="${p.id}"></td>
-                    <td th:text="${p.nom}"></td>
-                    <td th:text="${p.dateNaissance}"></td>
-                    <td th:text="${p.malade}"></td>
-                    <td th:text="${p.score}"></td>
-                </tr>
+                    <tr th:each="p:${listPatients}">
+                        <td th:text="${p.id}"></td>
+                        <td th:text="${p.nom}"></td>
+                        <td th:text="${p.dateNaissance}"></td>
+                        <td th:text="${p.malade}"></td>
+                        <td th:text="${p.score}"></td>
+                        <td>
+                            <button class="btn btn-danger" th:href="@{delete(id=${p.id})}">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
+
+            <ul class="nav nav-pills">
+                <li th:each="page,status:${pages}">
+                    <a th:class="${status.index==pageCurrent?'btn btn-info m-lg-1':'btn btn-outline-info m-lg-1'}"
+                       th:text="${status.index}"
+                       th:href="@{index(page=${status.index},keyword=${keyword})}"
+                    ></a>
+                </li>
+            </ul>
+
         </div>
     </div>
 </div>
