@@ -48,4 +48,11 @@ public class PatientController {
         return patientRepositoriy.findAll();
         }
 
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+    @GetMapping(path = "/index1")
+    public String patients1(){
+        return "patients1";
+    }
+
 }
