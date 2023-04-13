@@ -48,6 +48,12 @@ public class PatientController {
         return patientRepositoriy.findAll();
         }
 
+    @GetMapping("/formPatients")
+    public String formPatients(Model model){
+        model.addAttribute("patient",new Patient());
+    return "formPatients";
+    }
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @GetMapping(path = "/index1")
