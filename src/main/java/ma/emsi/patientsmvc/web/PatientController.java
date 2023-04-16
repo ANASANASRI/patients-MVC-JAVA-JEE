@@ -8,6 +8,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -54,6 +55,12 @@ public class PatientController {
     return "formPatients";
     }
 
+    @PostMapping(path = "/save")
+    public String save(Model model,Patient patient){
+        patientRepositoriy.save(patient);
+        return "formPatients";
+    }
+
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
     @GetMapping(path = "/index1")
@@ -61,4 +68,5 @@ public class PatientController {
         return "patients1";
     }
 
+    //44min part 2
 }

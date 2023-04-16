@@ -16,7 +16,6 @@ public class PatientsMvcApplication {
         SpringApplication.run(PatientsMvcApplication.class, args);
     }
 
-    @Bean
     CommandLineRunner commandLineRunner(PatientRepositoriy patientRepositoriy){
         return args -> {
 
