@@ -35,8 +35,8 @@ public class SecurityConfig {
         httpSecurity.formLogin().loginPage("/login").permitAll();
         httpSecurity.rememberMe();
         httpSecurity.authorizeHttpRequests().requestMatchers("/webjars/**","/h2-console/**").permitAll();
-        //httpSecurity.authorizeHttpRequests().requestMatchers("/user/**").hasRole("USER");
-        //httpSecurity.authorizeHttpRequests().requestMatchers("/admin/**").hasRole("ADMIN");
+        httpSecurity.authorizeHttpRequests().requestMatchers("/user/**").hasRole("USER");
+        httpSecurity.authorizeHttpRequests().requestMatchers("/admin/**").hasRole("ADMIN");
         httpSecurity.authorizeHttpRequests().anyRequest().authenticated();
         httpSecurity.exceptionHandling().accessDeniedPage("/notAuthorized");
         return httpSecurity.build();

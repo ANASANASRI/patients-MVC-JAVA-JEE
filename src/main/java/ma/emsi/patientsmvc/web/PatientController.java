@@ -25,12 +25,12 @@ public class PatientController {
     public String patients(Model model,
                            @RequestParam(name ="page",defaultValue = "0") int page,
                            @RequestParam(name ="size",defaultValue = "5") int size,
-                           @RequestParam(name ="keyword",defaultValue = "") String keyword) {
+                           @RequestParam(name ="keyword",defaultValue = "")String keyword) {
 
         Page<Patient> pagePatients = patientRepositoriy.findByNomContains(keyword,PageRequest.of(page,size));
         model.addAttribute("listPatients",pagePatients.getContent());
         model.addAttribute("pages",new int[pagePatients.getTotalPages()]);
-        model.addAttribute("pageCurrent",page);
+        model.addAttribute("currentPage",page);
         model.addAttribute("keyword",keyword);
         return "patients";
     }
@@ -39,7 +39,7 @@ public class PatientController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public String delete(Long id,String keyword,int page){
         patientRepositoriy.deleteById(id);
-        return "redirect:/index?page="+page+"&keyword="+keyword;
+        return "redirect:index?page="+page+"&keyword="+keyword;
     }
 
     @GetMapping("/admin/formPatients")
@@ -78,9 +78,9 @@ public class PatientController {
 
     //////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-    @GetMapping(path = "/index1")
+    @GetMapping(path = "/user/index1")
     public String patients1(){
-        return "patients1";
+        return "home1";
     }
 
     //50 min part 2
