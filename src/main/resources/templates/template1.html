@@ -17,17 +17,23 @@
     <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" th:href="@{/index}">Home</a>
+          <a class="nav-link" th:href="@{/user/index}">Home</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" th:href="@{/formPatients}">Patients</a>
+          <a class="nav-link" th:href="@{/admin/formPatients}">Patients</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" th:href="@{/formPatients}">new patient</a>
+          <a class="nav-link" th:href="@{/admin/formPatients}">new patient</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" th:href="@{/index}">Chercher</a>
+          <a class="nav-link" th:href="@{/admin/index}">Chercher</a>
         </li>
+        <li>
+          <a method="post" th:action="@{/logout}">
+          <button class="dropdown-item" type="submit">Logout</button>
+          </a>
+        </li>
+
       </ul>
     </div>
   </div>

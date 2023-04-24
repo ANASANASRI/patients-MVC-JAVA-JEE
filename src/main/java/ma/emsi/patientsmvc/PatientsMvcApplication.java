@@ -6,6 +6,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Date;
 
@@ -16,11 +18,12 @@ public class PatientsMvcApplication {
         SpringApplication.run(PatientsMvcApplication.class, args);
     }
 
+    //@Bean
     CommandLineRunner commandLineRunner(PatientRepositoriy patientRepositoriy){
         return args -> {
 
             patientRepositoriy.save(
-                    new Patient(null,"Anas",new Date(),false,12));
+                    new Patient(null,"Anas",new Date(),false,112));
             patientRepositoriy.save(
                     new Patient(null,"Hassane",new Date(),true,212));
             patientRepositoriy.save(
@@ -33,6 +36,10 @@ public class PatientsMvcApplication {
             });
 
         };
+    }
+    @Bean
+    PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 
 }

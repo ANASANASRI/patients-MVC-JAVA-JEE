@@ -17,7 +17,7 @@
         <div class="card-header">Liste des patients</div>
         <div class="card-body">
 
-            <form method="get" th:action="@{index}">
+            <form method="get" th:action="@{/user/index}">
                 <label>Key word</label>
                 <input type="text" name="keyword" th:value="${keyword}">
                 <button type="submit" class="btn btn-primary">Chercher</button>
@@ -41,10 +41,18 @@
                         <td th:text="${p.dateNaissance}"></td>
                         <td th:text="${p.malade}"></td>
                         <td th:text="${p.score}"></td>
-                        <td>
+                        <td th:if="${#authorization.expression("hasRole(\"ADMIN\")")}">
                             <a onclick="return confirm('sure ?')" class="btn btn-danger"
-                                    th:href="@{delete(id=${p.id}, keywod=${keyword}, page=${pageCurrent})}">
+                                    th:href="@{/admin/delete(id=${p.id}, keywod=${keyword}, page=${pageCurrent})}">
+                                <i class="bi bi-trash"></i>
                                 Delete
+                            </a>
+                        </td>
+                        <td th:if="${#authorization.expression("hasRole(\"ADMIN\")")}">
+                            <a  class="btn btn-danger"
+                                th:href="@{/admin/edit(id=${p.id})}">
+                                <i class="bi bi-pencil"></i>
+                                Modify
                             </a>
                         </td>
                     </tr>
@@ -55,7 +63,7 @@
                 <li th:each="page,status:${pages}">
                     <a th:class="${status.index==pageCurrent?'btn btn-info m-lg-1':'btn btn-outline-info m-lg-1'}"
                        th:text="${status.index}"
-                       th:href="@{index(page=${status.index},keyword=${keyword})}"
+                       th:href="@{/user/index(page=${status.index},keyword=${keyword})}"
                     ></a>
                 </li>
             </ul>
