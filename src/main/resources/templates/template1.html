@@ -24,18 +24,17 @@
           <a class="nav-link" th:href="@{/user/index}">Patients</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" th:href="@{/admin/formPatients}">new patient</a>
+          <a class="nav-link" th:href="@{/admin/formPatients}">Add patient</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" th:href="@{/admin/index}">Chercher</a>
         </li>
-        <li>
-          <form method="post" th:action="@{/logout}">
-            <i class="fas fa-sign-out-alt"></i>
-            <button class="dropdown-item" type="submit">Logout</button>
-          </form>
-        </li>
+
       </ul>
+      <form method="post" th:action="@{/logout}">
+        <button class="dropdown-item" type="submit">Logout</button>
+        <i class="bi bi-box-arrow-right"></i>
+      </form>
     </div>
   </div>
 </nav>
